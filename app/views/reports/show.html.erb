@@ -1,0 +1,40 @@
+<%= render "reports/header" %>
+<div class = "form-container">
+  <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Consumedcalories:</strong>
+  <%= @report.consumedCalories %>
+</p>
+<br>
+<p>
+  <strong>Burnedcalories:</strong>
+  <%= @report.burnedCalories %>
+</p>
+<br>
+<p>
+  <strong>Diference:</strong>
+  <%= @report.diference %>
+</p>
+<br>
+<p>
+  <strong>Diference value:</strong>
+  <%= @report.diference_value %>
+</p>
+<br>
+<p>
+  <strong>Creation date:</strong>
+  <%= @report.creation_date %>
+</p>
+<br>
+
+<div class="field is-grouped">
+      <div class = "control">
+        <%= link_to 'Edit', edit_report_path(@report), :class => "button is-link" %> |
+        <%= link_to 'Back', reports_path , :class => "button is-link"%>
+      </div>
+    </div>
+
+
+  
+</div>

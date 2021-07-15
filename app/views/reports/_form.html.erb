@@ -1,0 +1,34 @@
+<%= render "reports/header" %>
+<div class = "form-container">
+  <%= form_with(model: report) do |form| %>
+  <% if report.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h2>
+
+      <ul>
+        <% report.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :consumedCalories, :class => "label" %>
+    <%= form.number_field :consumedCalories , :class => "input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :burnedCalories, :class => "label" %>
+    <%= form.number_field :burnedCalories , :class => "input" %>
+  </div>
+
+  <div class="field is-grouped">
+      <div class = "control">
+         <%= form.submit "Create" , :class => "button is-link"%>
+      </div>
+    </div>
+ 
+<% end %>
+
+</div>

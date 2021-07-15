@@ -1,0 +1,41 @@
+<%= render "header" %>
+    <br>
+    <main>
+        <div class="container-main" style="padding: 30px;">
+            <div class="title">
+                <p class="title is-1">Change your life now!</p>
+            </div>
+            <br>
+            <div class="columns p-6">
+
+
+                <div class="column" id="column1">
+                    <p class="title is-2">Check Progress</p>
+                    <img src="https://image.freepik.com/vector-gratis/ilustracion-gimnasio-fitness-cronometro-pesa-gimnasia-concepto-gimnasio-blanco-aislado_138676-661.jpg" width="300" alt="" srcset="">
+                    <div class="column-container">
+                        <%= link_to 'CHECK', reports_path  %>
+                        
+                    </div>
+
+                </div>
+                <div class="column" id="column2">
+                    <p class="title is-2">Create a Goal</p>
+                    <img src="https://media.istockphoto.com/vectors/business-target-and-to-do-list-concept-vector-flat-graphic-design-vector-id1185243355?s=612x612" width="350" alt="">
+                    <div class="column-container">
+                        <a href="progress.html"> <strong>Mark</strong></a>
+                    </div>
+
+                </div>
+                <div class="column" id="column3">
+                    <p class="title is-2">Share</p>
+                    <img src="https://www.clasesdeperiodismo.com/wp-content/uploads/2011/05/social-media.jpg" width="420" alt="">
+                    <div class="column-container">
+                        <%= link_to "Share", reports_path %>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </main>

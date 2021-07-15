@@ -1,0 +1,57 @@
+.form-container{
+    position: absolute;
+    margin-top: 30px;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    background: rgb(138, 234, 243);;
+    border-radius: 0.625rem;
+    width: 400px;
+    left: 36%;
+}
+
+.principal-container{
+    height: 100vh;
+    display: flex;        
+    justify-content: center;
+    
+    .graphic-container{
+    position: absolute;
+    margin-top: 30px;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    background: #3367d0;
+    border-radius: 0.625rem;
+    width: 650px;
+    
+    
+        .graphic-container1{
+            background: #eeeeee;
+            padding: 40px;
+             
+            margin-bottom: 20px;
+        }
+        .graphic-container2{
+            background: #eeeeee;
+            margin-top: 30px;
+            padding: 40px;
+        }
+    }
+}
+
+.link-item:hover{
+    background: red;
+}
+
+
+.date-container{
+    position: absolute;
+    margin-top: 30px;
+    padding: 2.5rem;
+    box-sizing: border-box;
+    
+    border-radius: 0.625rem;
+    width: 400px;
+    left: 36%;
+    
+}
+

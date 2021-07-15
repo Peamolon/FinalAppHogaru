@@ -1,0 +1,19 @@
+<%= render "header" %>
+<div class = "principal-container">
+    <div class = "graphic-container">
+    <div class = "graphic-container1">
+        <p class = "title is-1" style="color:#385cb8;">Consumed calories<p>
+        <br>
+        <%= line_chart @reports.group_by_day(:creation_date).sum(:consumedCalories) %>
+        <br>
+    </div>
+    <div class = "graphic-container2">
+        <p class = "title is-1" style="color:#385cb8;">Burned calories</p>
+        <br>
+        <%= line_chart @reports.group_by_day(:creation_date).sum(:burnedCalories) %>
+        
+    </div>
+
+</div>
+    
+</div>
