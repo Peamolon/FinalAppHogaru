@@ -1,13 +1,16 @@
  <%= render "header" %>
  
   <div class = "date-container" data-no-turbolink>
+      <p class = "notice"><%= notice %></p>
+    <p class = "alert"><%= alert %></p>
+      <p class="title is-1" style="color: rgb(183, 137, 243);">Filter your progress </p>
       <div class="field">
         <input type="text" class = "input" id="rangepicker"> <br>
         <br>
         <%= link_to 'refresh', filter_date_path , :class => "button is-link"%>
     </div> 
  </div>    
- <% (1..5).each do |num| %>
+ <% (1..11).each do |num| %>
      <br>
  <%end %>
 
@@ -25,7 +28,7 @@
       <th>Diference</th>
       <th>Type</th>
       <th>Date</th>
-      <th colspan="3"></th>
+      
     </tr>
   </thead>
 
@@ -41,7 +44,7 @@
         <td><%= report.diference %></td>
         <td><%= report.diference_value %></td>
         <td><%= report.creation_date%></td>
-        <td><%= link_to 'View Details', list_by_date_date_path(report.creation_date) %></td>
+        
       </tr>
       <% numero = numero + 1 %>
     <% end %>
@@ -71,7 +74,6 @@
    }, function(start, end, label) {
         $("#start").val(start.format('YYYY-MM-DD'));
         $("#end").val(end.format('YYYY-MM-DD'));
-    
         $("form").submit();
        
   });

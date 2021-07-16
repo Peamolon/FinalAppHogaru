@@ -2,6 +2,8 @@
  <%= render "header" %>
 <p id="notice"><%= notice %></p>
 <div class = "table-container">
+  <p class = "notice"><%= notice %></p>
+    <p class = "alert"><%= alert %></p>
   <p class="title is-1" style="color: rgb(183, 137, 243);">All my history at <%=@reports.first.creation_date%></p>
   <table class = "table">
   <thead>

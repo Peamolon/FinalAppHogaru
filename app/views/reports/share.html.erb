@@ -1,0 +1,13 @@
+<%= render "header" %>
+<div class = "form-container">
+     <p class = "notice"><%= notice %></p>
+    <p class = "alert"><%= alert %></p> 
+    <h1 class="title">Share your progress to your friends</h1>
+    <%= form_with url: share_link_path, method: :post do |f| %>
+       
+         <%= f.text_field :email, :class => "input is-sucess" %>
+         <%= f.submit "Share" , :class => "button is-link" %>
+       
+    <%end %>
+    
+</div>

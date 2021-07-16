@@ -38,6 +38,12 @@ class ReportsController < ApplicationController
   # GET /reports/1 or /reports/1.json
   def show
   end
+  
+  
+  def share_graphic
+    @finalReports = Report.where('owner_id = ?', current_user.id)
+    @finalReports = @finalReports.paginate(page: params[:page], per_page: 10)
+  end
 
   # GET /reports/new
   def new
@@ -80,6 +86,19 @@ class ReportsController < ApplicationController
    # @reports = Report.page(params[:page])
     
     
+  end
+  
+  
+  def share
+  end
+  
+  def createShare
+    email = params[:email]
+    ShareMailer.send_link(email)
+    ReportMailer.report_created(email).deliver_now
+    respond_to do |format|
+      format.html { redirect_to share_path, notice: "We have sent a link to the indicated email" }
+    end
   end
   
   def filter_date

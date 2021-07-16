@@ -9,6 +9,7 @@
     "chart.js": "^3.4.1",
     "chartkick": "^4.0.5",
     "daterangepicker": "^3.1.0",
+    "flatpickr": "^4.6.9",
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "turbolinks": "^5.2.0",

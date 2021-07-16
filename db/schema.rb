@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_041805) do
+ActiveRecord::Schema.define(version: 2021_07_16_003856) do
+
+  create_table "email_links", force: :cascade do |t|
+    t.string "token"
+    t.datetime "expires_date"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_email_links_on_user_id"
+  end
 
   create_table "reports", force: :cascade do |t|
     t.integer "consumedCalories"
@@ -38,5 +47,6 @@ ActiveRecord::Schema.define(version: 2021_07_15_041805) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "email_links", "users"
   add_foreign_key "reports", "users", column: "owner_id"
 end

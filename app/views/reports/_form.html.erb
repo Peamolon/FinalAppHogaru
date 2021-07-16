@@ -1,5 +1,7 @@
 <%= render "reports/header" %>
 <div class = "form-container">
+  <p class = "notice"><%= notice %></p>
+    <p class = "alert"><%= alert %></p>
   <%= form_with(model: report) do |form| %>
   <% if report.errors.any? %>
     <div id="error_explanation">

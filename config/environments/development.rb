@@ -62,8 +62,6 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
-  
-  
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
@@ -74,8 +72,11 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  # Uncomment if you wish to allow Action Cable access from any origin.
+  # config.action_cable.disable_request_forgery_protection = true
   
-   config.action_mailer.delivery_method = :smtp
+     config.action_mailer.delivery_method = :smtp
  config.action_mailer.smtp_settings = {
       :address => "smtp.gmail.com",
       :port => 587,
@@ -85,10 +86,7 @@ Rails.application.configure do
       :enable_starttls_auto => true,
       :authentication => "plain",
   }
-
-  # Uncomment if you wish to allow Action Cable access from any origin.
-  # config.action_cable.disable_request_forgery_protection = true
-  config.hosts.clear
   
-  config.action_mailer.default_url_options = { host: "https://136f92b5cf624062bd6789d0a61ae404.vfs.cloud9.us-east-2.amazonaws.com"}
+  config.hosts.clear
+  config.action_mailer.default_url_options = { host: "https://20553539ab744e7f908cdda6322b1529.vfs.cloud9.us-east-2.amazonaws.com"}
 end
