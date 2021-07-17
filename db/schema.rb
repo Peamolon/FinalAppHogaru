@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_003856) do
+ActiveRecord::Schema.define(version: 2021_07_17_034148) do
 
   create_table "email_links", force: :cascade do |t|
     t.string "token"
@@ -19,6 +19,18 @@ ActiveRecord::Schema.define(version: 2021_07_16_003856) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_email_links_on_user_id"
+  end
+
+  create_table "progresses", force: :cascade do |t|
+    t.date "expires_at"
+    t.integer "consumedCalories"
+    t.integer "burnedCalories"
+    t.integer "user_id"
+    t.integer "porcent"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "burnedObjetive"
+    t.integer "consumedObjetive"
   end
 
   create_table "reports", force: :cascade do |t|

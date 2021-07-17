@@ -50,6 +50,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate(@filterReport,:renderer => WillPaginate::ActionView::LinkRenderer, class: 'justify-content-center') %>
  <%= form_tag filter_date_path, method: :get do %>
      <%= hidden_field_tag :start %>
      <%= hidden_field_tag :end %>

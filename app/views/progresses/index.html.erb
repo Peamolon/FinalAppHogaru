@@ -1,0 +1,39 @@
+<%= render './reports/header' %>
+<div class = "table-container">
+  <p id="notice"><%= notice %></p>
+
+<p class="title is-1" style="color: rgb(183, 137, 243);">My goals</p>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <th>Expires at</th>
+      <th>Consumedcalories</th>
+      <th>Burnedcalories</th>
+      <th>Porcent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @progresses.each do |progress| %>
+      <tr>
+        <td><%= progress.expires_at %></td>
+        <td><%= progress.consumedCalories %></td>
+        <td><%= progress.burnedCalories %></td>
+        <td>
+          <progress id="file" value= <%= progress.porcent.to_s %>  max="100"> 32% </progress>
+        </td>
+        <td><%= link_to 'View goal', progress %></td>
+        <td><%= link_to 'Delete goal', progress, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Goal', new_progress_path %>
+  
+</div>
+

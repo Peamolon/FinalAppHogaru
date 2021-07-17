@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  expires_at: 2021-07-16
+  consumedCalories: 1
+  burnedCalories: 1
+  user_id: 1
+  porcent: 1
+
+two:
+  expires_at: 2021-07-16
+  consumedCalories: 1
+  burnedCalories: 1
+  user_id: 1
+  porcent: 1

@@ -1,0 +1,50 @@
+<%= render './reports/header' %>
+<div class = "form-container">
+  <p id="notice"><%= notice %></p>
+  
+<p class= "title is-2">My goal for today</p>
+
+<progress id="file" value= <%= @progress.porcent.to_s %>  max="100"> 32% </progress>
+<p><strong> You have completed <%=@progress.porcent.to_s%> % of your goal</strong></p>
+<br>
+
+<p><strong> Your goal dates</strong></p>
+<br>
+<div style= "margin: 0 30px;">
+    <p>
+      <strong>Consumed calories:</strong>
+      <%= @progress.consumedCalories %>
+    </p>
+    <br>
+    <p>
+      <strong>Burned calories:</strong>
+      <%= @progress.burnedCalories %>
+    </p>
+    <br>
+
+</div>
+
+
+<p><strong> You have done</strong></p>
+<br>
+<div style= "margin: 0 30px;">
+    <p>
+      <strong>Consumed calories:</strong>
+      <%= @progress.consumedObjetive %>
+    </p>
+    <br>
+    <p>
+      <strong>Burned calories:</strong>
+      <%= @progress.burnedObjetive %>
+    </p>
+    <br>
+
+</div>
+
+
+<br>
+<%= link_to 'Back', progresses_path %>
+
+
+</div>
+

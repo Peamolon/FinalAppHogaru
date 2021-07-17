@@ -3,7 +3,7 @@
   <p id="notice"><%= notice %></p>
   <p class = "notice"><%= notice %></p>
     <p class = "alert"><%= alert %></p>
-  <p class="title is-1" style="color: rgb(183, 137, 243);">My Progress</p>
+  <p class="title is-1" style="color: rgb(183, 137, 243);">Last 30 days information</p>
   <table class = "table">
   <thead>
     <tr>
@@ -14,13 +14,12 @@
       <th>Diference</th>
       <th>Type</th>
       <th>Date</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% numero = 1 %>
-    <% @finalReports.each do |report| %>
+    <% @last_reports.each do |report| %>
     
       <tr>
         <td><%= numero %></td>
@@ -30,27 +29,14 @@
         <td><%= report.diference %></td>
         <td><%= report.diference_value %></td>
         <td><%= report.creation_date%></td>
-        <td><%= link_to 'View Details', list_by_date_date_path(report.creation_date) %></td>
       </tr>
       <% numero = numero + 1 %>
     <% end %>
   </tbody>
 </table>
-  <div class = "control">
-        <%= link_to 'New Report', new_report_path , :class => "button is-link" %>
-        <% if @reports.last == nil %>
-          <%= link_to 'Graphics',graphic_date_path('0') , :class => "button is-link"%>
-        <%else %>
-          <%= link_to 'Graphics',graphic_date_path(@reports.last.creation_date) , :class => "button is-link"%>
-        <%end %>
-  </div>
-  <%= will_paginate(@finalReports,:renderer => WillPaginate::ActionView::LinkRenderer, class: 'justify-content-center') %>
+  <%= will_paginate(@last_reports,:renderer => WillPaginate::ActionView::LinkRenderer, class: 'justify-content-center') %>
  
       
     
 
 </div>
-
-
-
-<br>

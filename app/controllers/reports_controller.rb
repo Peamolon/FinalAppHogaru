@@ -4,7 +4,7 @@ class ReportsController < ApplicationController
   require 'will_paginate/array' 
   # GET /reports or /reports.json
  def index
-    @reports = Report.where('owner_id = ?', current_user.id)
+    @reports = Report.where('owner_id = ?', current_user.id).order(creation_date: :desc)
     @dates = @reports.distinct.pluck(:creation_date)
 
     @finalReports = []
@@ -30,13 +30,24 @@ class ReportsController < ApplicationController
       report = Report.new(burnedCalories: burnedCaloriesAux, consumedCalories: consumedCaloriesAux,creation_date:date, diference: diferenceAux, diference_value: typeAux)
       @finalReports.unshift(report)
     end
+    @finalReports =@finalReports.sort_by{|x| [Date.today - x.creation_date]}
     @finalReports = @finalReports.paginate(page: params[:page], per_page: 10)
-   # @finalReports = @finalReports.paginate(page: params[:page], per_page: 10)
-   #@finalReports = User.page(params[:page])
+    return @finalReports
   end
 
   # GET /reports/1 or /reports/1.json
   def show
+  end
+  
+  
+  def last_days
+    @start_date =  30.days.ago.to_date
+    @end_date =  Date.current
+    range = (@start_date..@end_date)
+    @last_reports = Report.where('owner_id = ?', current_user.id).where(creation_date: range)
+    @last_reports =@last_reports.sort_by{|x| [Date.today - x.creation_date]}
+    
+     @last_reports = @last_reports.paginate(page: params[:page], per_page: 10)
   end
   
   
@@ -67,6 +78,21 @@ class ReportsController < ApplicationController
     else
       @report.diference_value = 'Balance'
     end
+    
+    progress = Progress.where('user_id = ?', current_user.id).where('expires_at = ?', @report.creation_date)
+    if progress != nil
+      progress.each do |goal|
+        goal.burnedObjetive = goal.burnedObjetive + @report.burnedCalories
+        goal.consumedObjetive = goal.consumedObjetive + @report.consumedCalories
+        goal.porcent = (((goal.burnedObjetive+goal.consumedObjetive) * 100)/(goal.consumedCalories+goal.burnedCalories)).to_i
+        if goal.porcent > 100
+          goal.porcent = 100
+        end
+        goal.save
+      end
+    end
+      
+    
 
     respond_to do |format|
       if @report.save
@@ -78,6 +104,7 @@ class ReportsController < ApplicationController
       end
     end
   end
+  
   
    def list_by_date
      date =Date.parse(params["format"])
@@ -102,12 +129,11 @@ class ReportsController < ApplicationController
   end
   
   def filter_date
-    puts "Start es #{params[:start]}"
-    puts "End es #{params[:end]}"
     @start_date = params[:start].try(:to_date) || 30.days.ago.to_date
     @end_date = params[:end].try(:to_date) || Date.current
     range = (@start_date..@end_date)
     @filterReport = Report.where('owner_id = ?', current_user.id).where(creation_date: range)
+    @filterReport = @filterReport.paginate(page: params[:page], per_page: 10)
   end
   
   def graphic
@@ -142,6 +168,18 @@ class ReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_report
       @report = Report.find(params[:id])
+       progress = Progress.where('user_id = ?', current_user.id).where('expires_at = ?', @report.creation_date)
+        if progress != nil
+          progress.each do |goal|
+            goal.burnedObjetive = goal.burnedObjetive - @report.burnedCalories
+            goal.consumedObjetive = goal.consumedObjetive - @report.consumedCalories
+            goal.porcent = (((goal.burnedObjetive+goal.consumedObjetive) * 100)/(goal.consumedCalories+goal.burnedCalories)).to_i
+            if goal.porcent > 100
+              goal.porcent = 100
+            end
+            goal.save
+          end
+        end
     end
 
     # Only allow a list of trusted parameters through.

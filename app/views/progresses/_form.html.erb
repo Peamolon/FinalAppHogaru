@@ -1,0 +1,40 @@
+<div class = "form-container">
+  <p class = "notice"><%= notice %></p>
+  <p class = "alert"><%= alert %></p>
+  <%= form_with(model: progress) do |form| %>
+  <% if progress.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(progress.errors.count, "error") %> prohibited this progress from being saved:</h2>
+
+      <ul>
+        <% progress.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+
+  <div class="field">
+    <%= form.label :consumedCalories,:value =>"How many calories are we going to burn?", :class => "label" %>
+    <%= form.number_field :consumedCalories, :class => "input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :burnedCalories, :value => "How many calories are we going to consume?" , :class => "label" %>
+    <%= form.number_field :burnedCalories, :class => "input" %>
+  </div>
+
+  
+  <div class="field is-grouped">
+      <div class = "control">
+         <%= form.submit "Let's go" , :class => "button is-link"%>
+         <%= link_to 'Back', progresses_path, :class => "button is-link" %>
+      </div>
+    </div>
+
+<% end %>
+  
+</div>
+

@@ -17,6 +17,18 @@
                 <%= link_to "Home",root_path, :class => "navbar-item" %>
               
                  <%= link_to "My progress", reports_path, :class => "navbar-item" %>
+                 
+                 <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                            My Goals</a>
+
+                    <div class="navbar-dropdown">
+                        <%= link_to "Create a goal",new_progress_path, :class => "navbar-item" %>
+                         <%= link_to "All my goals",progresses_path, :class => "navbar-item" %>
+                       
+        
+                    </div>
+                </div>
                
 
                 <div class="navbar-item has-dropdown is-hoverable">
@@ -25,16 +37,8 @@
 
                     <div class="navbar-dropdown">
                         <%= link_to "By date",filter_date_path, :class => "navbar-item" %>
-                        <a class="navbar-item" href= "root_path">
-                                Jobs
-                            </a>
-                        <a class="navbar-item">
-                                Contact
-                            </a>
-                        <hr class="navbar-divider">
-                        <a class="navbar-item">
-                                Report an issue
-                            </a>
+                        <%= link_to "Last 30 days",last_days_path, :class => "navbar-item" %>
+                
                     </div>
                 </div>
             </div>

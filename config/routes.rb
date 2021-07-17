@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+  resources :progresses
   get 'email_links/new'
   
   post 'reports/createShare', as: :share_link
+  
+  get '/last_days', to: 'reports#last_days'
   #post 'email_links/create', as: :magic_link
   #get 'email_link/validate', as: :email_link
   post 'reports/share', as: :magic_link
+  
+  get '/goals', to: 'reports#goal'
   
   get '/share_graphic', to: 'reports#share_graphic'
   get 'password_resets/new'
