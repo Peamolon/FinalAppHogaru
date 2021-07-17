@@ -81,14 +81,21 @@ class ReportsController < ApplicationController
     
     progress = Progress.where('user_id = ?', current_user.id).where('expires_at = ?', @report.creation_date)
     if progress != nil
+      
       progress.each do |goal|
+         puts "Informacion de mi goal #{goal.consumedCalories} #{goal.burnedCalories} #{goal.consumedObjetive} #{goal.burnedObjetive} "
         goal.burnedObjetive = goal.burnedObjetive + @report.burnedCalories
         goal.consumedObjetive = goal.consumedObjetive + @report.consumedCalories
         goal.porcent = (((goal.burnedObjetive+goal.consumedObjetive) * 100)/(goal.consumedCalories+goal.burnedCalories)).to_i
         if goal.porcent > 100
           goal.porcent = 100
         end
-        goal.save
+         puts "Informacion de mi goal2 #{goal.consumedCalories} #{goal.burnedCalories} #{goal.consumedObjetive} #{goal.burnedObjetive} "
+         if goal.save
+           puts "guarda"
+         else
+           puts "algo paso"
+         end
       end
     end
       
@@ -168,18 +175,6 @@ class ReportsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_report
       @report = Report.find(params[:id])
-       progress = Progress.where('user_id = ?', current_user.id).where('expires_at = ?', @report.creation_date)
-        if progress != nil
-          progress.each do |goal|
-            goal.burnedObjetive = goal.burnedObjetive - @report.burnedCalories
-            goal.consumedObjetive = goal.consumedObjetive - @report.consumedCalories
-            goal.porcent = (((goal.burnedObjetive+goal.consumedObjetive) * 100)/(goal.consumedCalories+goal.burnedCalories)).to_i
-            if goal.porcent > 100
-              goal.porcent = 100
-            end
-            goal.save
-          end
-        end
     end
 
     # Only allow a list of trusted parameters through.

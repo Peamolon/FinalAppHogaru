@@ -62,6 +62,7 @@ class ProgressesController < ApplicationController
 
   # PATCH/PUT /progresses/1 or /progresses/1.json
   def update
+    
     respond_to do |format|
       if @progress.update(progress_params)
         format.html { redirect_to @progress, notice: "Progress was successfully updated." }
@@ -91,6 +92,6 @@ class ProgressesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def progress_params
-      params.require(:progress).permit(:expires_at, :consumedCalories, :burnedCalories, :user_id, :porcent)
+      params.require(:progress).permit(:expires_at, :consumedCalories, :burnedCalories, :user_id, :porcent, :burnedObjetive, :consumedObjetive)
     end
 end
